@@ -1,30 +1,15 @@
 
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Clock, User, MapPin, Info } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Clock, User, MapPin, Info } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
-import { mockBuildings } from '@/data/buildings';
+import { BuildingType } from '@/types/campus';
 
-const BuildingInfo: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  
-  const buildingId = parseInt(id || '0');
-  const building = mockBuildings.find(b => b.id === buildingId);
+interface BuildingInfoProps {
+  building: BuildingType;
+}
 
-  if (!building) {
-    return (
-      <div className="flex flex-col items-center justify-center h-full p-4">
-        <h2 className="text-xl font-bold mb-4">Edificio no encontrado</h2>
-        <Button onClick={() => navigate('/')}>
-          <ArrowLeft className="mr-2 h-4 w-4" /> Volver al mapa
-        </Button>
-      </div>
-    );
-  }
-
+const BuildingInfo: React.FC<BuildingInfoProps> = ({ building }) => {
   const getBuildingTypeLabel = (type: string) => {
     switch(type) {
       case 'faculty': return 'Facultad';
@@ -37,17 +22,6 @@ const BuildingInfo: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full overflow-hidden bg-gray-50">
-      {/* Header */}
-      <div className="bg-white p-4 shadow-sm flex items-center gap-2">
-        <Button variant="ghost" size="icon" onClick={() => navigate('/')} className="mr-1">
-          <ArrowLeft className="h-5 w-5" />
-        </Button>
-        <div>
-          <h1 className="text-xl font-bold">{building.name}</h1>
-          <p className="text-sm text-gray-500">{getBuildingTypeLabel(building.type)}</p>
-        </div>
-      </div>
-
       {/* Building Image */}
       <div className="relative h-52 w-full bg-gray-300">
         <div 
