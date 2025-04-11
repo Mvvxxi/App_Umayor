@@ -1,7 +1,7 @@
 .menu-container {
-  max-width: 1200px;
+  padding: 1rem;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,23 +24,29 @@
 
 .menu-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
   margin-bottom: 2rem;
 }
 
 .menu-item {
   background-color: white;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
   text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .menu-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .menu-item-content {
@@ -48,6 +54,25 @@
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
+}
+
+.menu-item-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #4a5568;
+}
+
+.menu-item-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #2d3748;
+}
+
+.menu-item-description {
+  font-size: 0.875rem;
+  color: #718096;
+  line-height: 1.4;
 }
 
 .icon-container {
