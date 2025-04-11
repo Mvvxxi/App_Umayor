@@ -6,7 +6,13 @@ import CampusMap from '@/components/CampusMap';
 const Index: React.FC = () => {
   return (
     <MainLayout>
-      <CampusMap />
+      <div className="flex flex-col h-full">
+        <div className="bg-campus-blue text-white p-3 text-center">
+          <h1 className="text-xl font-bold">Universidad Mayor</h1>
+          <p className="text-sm">Mapa Interactivo de Campus</p>
+        </div>
+        <CampusMap />
+      </div>
     </MainLayout>
   );
 };

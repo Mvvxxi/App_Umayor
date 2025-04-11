@@ -4,49 +4,49 @@ import { BuildingType } from '@/types/campus';
 export const mockBuildings: BuildingType[] = [
   {
     id: 1,
-    name: 'Facultad de Ingeniería',
+    name: 'Facultad de Ciencias',
     type: 'faculty',
-    description: 'Edificio principal de la Facultad de Ingeniería, alberga aulas, laboratorios y oficinas administrativas.',
-    location: 'Zona Norte del Campus',
+    description: 'Alberga programas como Agronomía, Biotecnología, Ingeniería Forestal y Medicina Veterinaria.',
+    location: 'Campus Huechuraba',
     position: { x: 30, y: 25 },
     image: '/placeholder.svg',
     contact: {
-      name: 'Dr. Juan Pérez',
-      email: 'ingenieria@universidad.edu',
-      phone: '(01) 234-5678'
+      name: 'Contacto Facultad de Ciencias',
+      email: 'facultad.ciencias@umayor.cl',
+      phone: '(56) 22 518 9000'
     },
     departments: [
-      { name: 'Ingeniería Civil', description: 'Departamento de Ingeniería Civil y Construcción', floor: 1 },
-      { name: 'Ingeniería Mecánica', description: 'Departamento de Ingeniería Mecánica', floor: 2 },
-      { name: 'Ingeniería Eléctrica', description: 'Departamento de Ingeniería Eléctrica y Electrónica', floor: 3 }
+      { name: 'Agronomía', description: 'Carrera de Agronomía', floor: 1 },
+      { name: 'Biotecnología', description: 'Carrera de Biotecnología', floor: 2 },
+      { name: 'Medicina Veterinaria', description: 'Carrera de Medicina Veterinaria', floor: 3 }
     ],
     schedule: {
-      'Lunes a Viernes': '7:00 - 21:00',
-      'Sábados': '8:00 - 14:00',
+      'Lunes a Viernes': '8:00 - 18:00',
+      'Sábados': '9:00 - 13:00',
       'Domingos': 'Cerrado'
     }
   },
   {
     id: 2,
-    name: 'Facultad de Ciencias',
+    name: 'Facultad de Humanidades',
     type: 'faculty',
-    description: 'Centro de investigación y enseñanza de las ciencias exactas y naturales.',
-    location: 'Zona Este del Campus',
+    description: 'Facultad que incluye carreras como Psicología, Sociología y Trabajo Social.',
+    location: 'Campus Manuel Montt',
     position: { x: 60, y: 30 },
     image: '/placeholder.svg',
     contact: {
-      name: 'Dra. Laura Martínez',
-      email: 'ciencias@universidad.edu',
-      phone: '(01) 234-5679'
+      name: 'Contacto Facultad de Humanidades',
+      email: 'facultad.humanidades@umayor.cl',
+      phone: '(56) 22 518 9000'
     },
     departments: [
-      { name: 'Física', description: 'Departamento de Física', floor: 1 },
-      { name: 'Química', description: 'Departamento de Química', floor: 2 },
-      { name: 'Matemáticas', description: 'Departamento de Matemáticas', floor: 3 }
+      { name: 'Psicología', description: 'Carrera de Psicología', floor: 1 },
+      { name: 'Sociología', description: 'Carrera de Sociología', floor: 2 },
+      { name: 'Trabajo Social', description: 'Carrera de Trabajo Social', floor: 2 }
     ],
     schedule: {
-      'Lunes a Viernes': '7:00 - 20:00',
-      'Sábados': '8:00 - 13:00',
+      'Lunes a Viernes': '8:00 - 20:00',
+      'Sábados': '9:00 - 13:00',
       'Domingos': 'Cerrado'
     }
   },
@@ -54,36 +54,36 @@ export const mockBuildings: BuildingType[] = [
     id: 3,
     name: 'Biblioteca Central',
     type: 'library',
-    description: 'Principal centro de recursos bibliográficos y de investigación de la universidad.',
-    location: 'Centro del Campus',
+    description: 'Biblioteca principal del Campus Manuel Montt con amplia colección de recursos bibliográficos.',
+    location: 'Campus Manuel Montt',
     position: { x: 45, y: 45 },
     image: '/placeholder.svg',
     contact: {
-      name: 'Lic. Carmen Rodríguez',
-      email: 'biblioteca@universidad.edu',
-      phone: '(01) 234-5680'
+      name: 'Director de Biblioteca',
+      email: 'biblioteca@umayor.cl',
+      phone: '(56) 22 518 9000'
     },
     schedule: {
-      'Lunes a Viernes': '8:00 - 22:00',
-      'Sábados': '9:00 - 18:00',
-      'Domingos': '10:00 - 16:00'
+      'Lunes a Viernes': '8:00 - 21:00',
+      'Sábados': '9:00 - 13:00',
+      'Domingos': 'Cerrado'
     }
   },
   {
     id: 4,
     name: 'Rectoría',
     type: 'admin',
-    description: 'Edificio administrativo principal donde se encuentran las oficinas del rector y directivos.',
-    location: 'Entrada Principal del Campus',
+    description: 'Oficinas administrativas principales y rectoría de la Universidad Mayor.',
+    location: 'Campus Manuel Montt',
     position: { x: 50, y: 15 },
     image: '/placeholder.svg',
     contact: {
-      name: 'Dr. Roberto Sánchez',
-      email: 'rectoria@universidad.edu',
-      phone: '(01) 234-5681'
+      name: 'Rectoría Universidad Mayor',
+      email: 'rectoria@umayor.cl',
+      phone: '(56) 22 518 9000'
     },
     schedule: {
-      'Lunes a Viernes': '9:00 - 17:00',
+      'Lunes a Viernes': '9:00 - 18:00',
       'Sábados y Domingos': 'Cerrado'
     }
   },
@@ -91,57 +91,57 @@ export const mockBuildings: BuildingType[] = [
     id: 5,
     name: 'Cafetería Central',
     type: 'cafeteria',
-    description: 'Principal espacio para servicios de alimentación dentro del campus.',
-    location: 'Centro-Sur del Campus',
+    description: 'Principal espacio para servicios de alimentación del Campus Manuel Montt.',
+    location: 'Campus Manuel Montt',
     position: { x: 45, y: 65 },
     image: '/placeholder.svg',
     schedule: {
-      'Lunes a Viernes': '7:00 - 20:00',
-      'Sábados': '8:00 - 15:00',
+      'Lunes a Viernes': '8:00 - 20:00',
+      'Sábados': '9:00 - 14:00',
       'Domingos': 'Cerrado'
     }
   },
   {
     id: 6,
-    name: 'Facultad de Medicina',
+    name: 'Facultad de Ciencias de la Salud',
     type: 'faculty',
-    description: 'Complejo dedicado a la enseñanza e investigación médica.',
-    location: 'Zona Oeste del Campus',
+    description: 'Alberga carreras como Enfermería, Kinesiología, Nutrición y Dietética, Obstetricia, entre otras.',
+    location: 'Campus Manuel Montt',
     position: { x: 20, y: 55 },
     image: '/placeholder.svg',
     contact: {
-      name: 'Dr. Miguel Álvarez',
-      email: 'medicina@universidad.edu',
-      phone: '(01) 234-5682'
+      name: 'Contacto Facultad de Ciencias de la Salud',
+      email: 'facultad.salud@umayor.cl',
+      phone: '(56) 22 518 9000'
     },
     departments: [
-      { name: 'Anatomía', description: 'Departamento de Anatomía', floor: 1 },
-      { name: 'Fisiología', description: 'Departamento de Fisiología', floor: 2 },
-      { name: 'Patología', description: 'Departamento de Patología', floor: 3 }
+      { name: 'Enfermería', description: 'Carrera de Enfermería', floor: 1 },
+      { name: 'Kinesiología', description: 'Carrera de Kinesiología', floor: 2 },
+      { name: 'Nutrición y Dietética', description: 'Carrera de Nutrición y Dietética', floor: 3 }
     ],
     schedule: {
-      'Lunes a Viernes': '7:00 - 21:00',
-      'Sábados': '8:00 - 14:00',
+      'Lunes a Viernes': '8:00 - 20:00',
+      'Sábados': '9:00 - 13:00',
       'Domingos': 'Cerrado'
     }
   },
   {
     id: 7,
-    name: 'Facultad de Humanidades',
+    name: 'Facultad de Artes',
     type: 'faculty',
-    description: 'Centro de estudios humanísticos y ciencias sociales.',
-    location: 'Zona Sur del Campus',
+    description: 'Facultad que alberga carreras como Arquitectura, Diseño, Artes Visuales y más.',
+    location: 'Campus El Claustro',
     position: { x: 75, y: 70 },
     image: '/placeholder.svg',
     contact: {
-      name: 'Dra. Patricia López',
-      email: 'humanidades@universidad.edu',
-      phone: '(01) 234-5683'
+      name: 'Contacto Facultad de Artes',
+      email: 'facultad.artes@umayor.cl',
+      phone: '(56) 22 518 9000'
     },
     departments: [
-      { name: 'Historia', description: 'Departamento de Historia', floor: 1 },
-      { name: 'Filosofía', description: 'Departamento de Filosofía', floor: 2 },
-      { name: 'Literatura', description: 'Departamento de Literatura', floor: 2 }
+      { name: 'Arquitectura', description: 'Carrera de Arquitectura', floor: 1 },
+      { name: 'Diseño', description: 'Carrera de Diseño', floor: 2 },
+      { name: 'Artes Visuales', description: 'Carrera de Artes Visuales', floor: 2 }
     ],
     schedule: {
       'Lunes a Viernes': '8:00 - 20:00',
@@ -154,39 +154,87 @@ export const mockBuildings: BuildingType[] = [
     name: 'Biblioteca de Ciencias',
     type: 'library',
     description: 'Biblioteca especializada en recursos científicos y tecnológicos.',
-    location: 'Cerca de la Facultad de Ciencias',
+    location: 'Campus Huechuraba',
     position: { x: 65, y: 40 },
     image: '/placeholder.svg',
     schedule: {
       'Lunes a Viernes': '8:00 - 20:00',
-      'Sábados': '9:00 - 14:00',
+      'Sábados': '9:00 - 13:00',
       'Domingos': 'Cerrado'
     }
   },
   {
     id: 9,
-    name: 'Servicios Escolares',
+    name: 'Dirección de Asuntos Estudiantiles (DAE)',
     type: 'admin',
-    description: 'Oficinas administrativas para trámites académicos y escolares.',
-    location: 'Cerca de la Rectoría',
+    description: 'Oficinas administrativas para trámites y servicios estudiantiles.',
+    location: 'Campus Manuel Montt',
     position: { x: 55, y: 20 },
     image: '/placeholder.svg',
     schedule: {
-      'Lunes a Viernes': '9:00 - 17:00',
+      'Lunes a Viernes': '9:00 - 18:00',
       'Sábados y Domingos': 'Cerrado'
     }
   },
   {
     id: 10,
-    name: 'Cafetería de Ingeniería',
+    name: 'Cafetería Huechuraba',
     type: 'cafeteria',
-    description: 'Servicio de alimentación cercano a la Facultad de Ingeniería.',
-    location: 'Junto a la Facultad de Ingeniería',
+    description: 'Servicio de alimentación ubicado en el Campus Huechuraba.',
+    location: 'Campus Huechuraba',
     position: { x: 35, y: 30 },
     image: '/placeholder.svg',
     schedule: {
-      'Lunes a Viernes': '7:30 - 19:00',
-      'Sábados': '8:00 - 13:00',
+      'Lunes a Viernes': '8:00 - 19:00',
+      'Sábados': '9:00 - 13:00',
+      'Domingos': 'Cerrado'
+    }
+  },
+  {
+    id: 11,
+    name: 'Facultad de Educación',
+    type: 'faculty',
+    description: 'Facultad dedicada a la formación de profesionales en el ámbito educativo.',
+    location: 'Campus Manuel Montt',
+    position: { x: 40, y: 35 },
+    image: '/placeholder.svg',
+    contact: {
+      name: 'Contacto Facultad de Educación',
+      email: 'facultad.educacion@umayor.cl',
+      phone: '(56) 22 518 9000'
+    },
+    departments: [
+      { name: 'Pedagogía en Educación Básica', description: 'Carrera de Pedagogía', floor: 1 },
+      { name: 'Educación Parvularia', description: 'Carrera de Educación Parvularia', floor: 2 },
+      { name: 'Psicopedagogía', description: 'Carrera de Psicopedagogía', floor: 3 }
+    ],
+    schedule: {
+      'Lunes a Viernes': '8:00 - 20:00',
+      'Sábados': '9:00 - 13:00',
+      'Domingos': 'Cerrado'
+    }
+  },
+  {
+    id: 12,
+    name: 'Facultad de Negocios',
+    type: 'faculty',
+    description: 'Facultad que alberga carreras como Ingeniería Comercial, Contador Auditor y más.',
+    location: 'Campus Manuel Montt',
+    position: { x: 70, y: 50 },
+    image: '/placeholder.svg',
+    contact: {
+      name: 'Contacto Facultad de Negocios',
+      email: 'facultad.negocios@umayor.cl',
+      phone: '(56) 22 518 9000'
+    },
+    departments: [
+      { name: 'Ingeniería Comercial', description: 'Carrera de Ingeniería Comercial', floor: 1 },
+      { name: 'Contador Auditor', description: 'Carrera de Contador Auditor', floor: 2 },
+      { name: 'Administración Pública', description: 'Carrera de Administración Pública', floor: 3 }
+    ],
+    schedule: {
+      'Lunes a Viernes': '8:00 - 20:00',
+      'Sábados': '9:00 - 13:00',
       'Domingos': 'Cerrado'
     }
   }
