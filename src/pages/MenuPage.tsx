@@ -1,14 +1,14 @@
 
 import React from 'react';
 import MainLayout from '@/components/MainLayout';
-import CampusMap from '@/components/CampusMap';
+import MenuScreen from '@/components/MenuScreen';
 
-const Index: React.FC = () => {
+const MenuPage: React.FC = () => {
   return (
     <MainLayout>
-      <CampusMap />
+      <MenuScreen />
     </MainLayout>
   );
 };
 
-export default Index;
+export default MenuPage;

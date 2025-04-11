@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -97,5 +98,45 @@
 
   body {
     @apply bg-background text-foreground;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html, body, #root {
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+  }
+}
+
+/* Specific styles for mobile app feel */
+@layer components {
+  .campus-map-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: manipulation;
+  }
+
+  .building-marker {
+    @apply bg-campus-blue text-white rounded-full flex items-center justify-center shadow-md transform transition-transform hover:scale-110 cursor-pointer;
+    width: 30px;
+    height: 30px;
+  }
+
+  .building-marker.faculty {
+    @apply bg-campus-blue;
+  }
+
+  .building-marker.admin {
+    @apply bg-campus-red;
+  }
+
+  .building-marker.library {
+    @apply bg-campus-green;
+  }
+
+  .building-marker.cafeteria {
+    @apply bg-campus-yellow;
   }
 }
