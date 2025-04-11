@@ -1,26 +1,28 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  MapPin, Building, School, BookOpen, 
-  Coffee, Search, Info, Menu, X 
+  Search, School, Building, BookOpen, Coffee
 } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import MapControls from './MapControls';
 import { BuildingType } from '@/types/campus';
 import { mockBuildings } from '@/data/buildings';
+import GoogleMapComponent from './GoogleMap';
 
 const CampusMap: React.FC = () => {
   const [scale, setScale] = useState(1);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
-  const [startDragPosition, setStartDragPosition] = useState({ x: 0, y: 0 });
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBuildings, setFilteredBuildings] = useState<BuildingType[]>(mockBuildings);
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
-  const mapRef = useRef<HTMLDivElement>(null);
+  const [useGoogleMaps, setUseGoogleMaps] = useState(true);
   const navigate = useNavigate();
+
+  // Original map state
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [startDragPosition, setStartDragPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     // Apply filters based on search query and selected filter
@@ -100,23 +102,12 @@ const CampusMap: React.FC = () => {
     navigate(`/building/${buildingId}`);
   };
 
-  const getIconForBuildingType = (type: string) => {
-    switch (type) {
-      case 'faculty':
-        return <School className="h-4 w-4" />;
-      case 'library':
-        return <BookOpen className="h-4 w-4" />;
-      case 'admin':
-        return <Building className="h-4 w-4" />;
-      case 'cafeteria':
-        return <Coffee className="h-4 w-4" />;
-      default:
-        return <MapPin className="h-4 w-4" />;
-    }
-  };
-
   const setFilter = (filter: string | null) => {
     setSelectedFilter(prevFilter => prevFilter === filter ? null : filter);
+  };
+
+  const toggleMapType = () => {
+    setUseGoogleMaps(prev => !prev);
   };
 
   return (
@@ -175,53 +166,109 @@ const CampusMap: React.FC = () => {
         </Button>
       </div>
 
-      {/* Campus Map */}
-      <div 
-        className="campus-map-container relative flex-1 bg-campus-lightGray"
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        ref={mapRef}
-      >
-        <div
-          className="absolute w-full h-full bg-white"
-          style={{
-            transform: `scale(${scale}) translate(${position.x / scale}px, ${position.y / scale}px)`,
-            transformOrigin: 'center',
-            transition: isDragging ? 'none' : 'transform 0.2s',
-            backgroundImage: 'url(/campus-map-bg.png)',
-            backgroundPosition: 'center',
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-          }}
+      {/* Map Toggle Button */}
+      <div className="flex justify-center p-2 bg-white">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={toggleMapType}
+          className="text-xs"
         >
-          {/* Campus elements and buildings */}
-          {filteredBuildings.map((building) => (
-            <div
-              key={building.id}
-              className={`building-marker ${building.type}`}
-              style={{
-                position: 'absolute',
-                left: `${building.position.x}%`,
-                top: `${building.position.y}%`,
-              }}
-              onClick={() => handleBuildingClick(building.id)}
-            >
-              {getIconForBuildingType(building.type)}
-            </div>
-          ))}
-        </div>
+          {useGoogleMaps ? "Ver Mapa Esquemático" : "Ver Google Maps"}
+        </Button>
+      </div>
+
+      {/* Campus Map */}
+      <div className="campus-map-container relative flex-1 bg-campus-lightGray">
+        {useGoogleMaps ? (
+          <GoogleMapComponent 
+            buildings={filteredBuildings}
+            onBuildingClick={handleBuildingClick}
+            scale={scale}
+          />
+        ) : (
+          // Original map implementation
+          <div
+            className="absolute w-full h-full bg-white"
+            style={{
+              transform: `scale(${scale}) translate(${position.x / scale}px, ${position.y / scale}px)`,
+              transformOrigin: 'center',
+              transition: isDragging ? 'none' : 'transform 0.2s',
+              backgroundImage: 'url(/campus-map-bg.png)',
+              backgroundPosition: 'center',
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+            }}
+            onMouseDown={(e) => {
+              setIsDragging(true);
+              setStartDragPosition({ x: e.clientX - position.x, y: e.clientY - position.y });
+            }}
+            onMouseMove={(e) => {
+              if (isDragging) {
+                setPosition({
+                  x: e.clientX - startDragPosition.x,
+                  y: e.clientY - startDragPosition.y
+                });
+              }
+            }}
+            onMouseUp={() => setIsDragging(false)}
+            onMouseLeave={() => setIsDragging(false)}
+            onTouchStart={(e) => {
+              if (e.touches.length === 1) {
+                setIsDragging(true);
+                setStartDragPosition({ 
+                  x: e.touches[0].clientX - position.x, 
+                  y: e.touches[0].clientY - position.y 
+                });
+              }
+            }}
+            onTouchMove={(e) => {
+              if (isDragging && e.touches.length === 1) {
+                setPosition({
+                  x: e.touches[0].clientX - startDragPosition.x,
+                  y: e.touches[0].clientY - startDragPosition.y
+                });
+              }
+            }}
+            onTouchEnd={() => setIsDragging(false)}
+          >
+            {/* Building markers on the schematic map */}
+            {filteredBuildings.map((building) => {
+              let Icon;
+              switch (building.type) {
+                case 'faculty': Icon = School; break;
+                case 'library': Icon = BookOpen; break;
+                case 'admin': Icon = Building; break;
+                case 'cafeteria': Icon = Coffee; break;
+                default: Icon = Building;
+              }
+              
+              return (
+                <div
+                  key={building.id}
+                  className={`building-marker ${building.type}`}
+                  style={{
+                    position: 'absolute',
+                    left: `${building.position.x}%`,
+                    top: `${building.position.y}%`,
+                  }}
+                  onClick={() => handleBuildingClick(building.id)}
+                >
+                  <Icon className="h-4 w-4" />
+                </div>
+              );
+            })}
+          </div>
+        )}
 
         {/* Map Controls */}
-        <MapControls 
-          onZoomIn={handleZoomIn} 
-          onZoomOut={handleZoomOut} 
-          onResetView={handleResetView} 
-        />
+        {!useGoogleMaps && (
+          <MapControls 
+            onZoomIn={handleZoomIn} 
+            onZoomOut={handleZoomOut} 
+            onResetView={handleResetView} 
+          />
+        )}
       </div>
     </div>
   );
