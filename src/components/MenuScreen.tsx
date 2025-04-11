@@ -1,162 +1,70 @@
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { 
-  Home, Settings, HelpCircle, LogOut, 
-  Bell, Moon, Sun, Info, MapPin 
-} from 'lucide-react';
-import { Switch } from '@/components/ui/switch';
-import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardHeader, 
-  CardTitle 
-} from '@/components/ui/card';
+import { Link } from 'react-router-dom';
+import { MapPin, BookOpen, Book, Info, School, GraduationCap } from 'lucide-react';
 
 const MenuScreen: React.FC = () => {
-  const navigate = useNavigate();
-  const [darkMode, setDarkMode] = React.useState(false);
+  const menuItems = [
+    {
+      title: 'Mapa del Campus',
+      description: 'Explora el campus de manera interactiva',
+      icon: <MapPin className="w-6 h-6 text-campus-blue" />,
+      path: '/'
+    },
+    {
+      title: 'Lista de Edificios',
+      description: 'Visualiza todos los edificios del campus',
+      icon: <BookOpen className="w-6 h-6 text-campus-green" />,
+      path: '/buildings'
+    },
+    {
+      title: 'Oferta Académica',
+      description: 'Explora carreras, facultades y campus',
+      icon: <GraduationCap className="w-6 h-6 text-campus-red" />,
+      path: '/academic'
+    },
+    {
+      title: 'Guía del Campus',
+      description: 'Información útil para moverte por el campus',
+      icon: <Info className="w-6 h-6 text-campus-yellow" />,
+      path: '/guide'
+    }
+  ];
 
   return (
-    <div className="flex flex-col h-full overflow-auto bg-gray-50 pb-16">
-      {/* Header and User Profile */}
-      <div className="bg-white p-4 shadow-sm">
-        <h1 className="text-xl font-bold">Menú</h1>
-        
-        <div className="flex items-center mt-4">
-          <Avatar className="h-16 w-16 border-2 border-white shadow">
-            <AvatarImage src="/placeholder.svg" alt="Foto de perfil" />
-            <AvatarFallback>UN</AvatarFallback>
-          </Avatar>
-          <div className="ml-4">
-            <h2 className="font-bold">Estudiante Ejemplo</h2>
-            <p className="text-sm text-gray-500">Facultad de Ingeniería</p>
-            <p className="text-xs text-campus-blue mt-1">Editar perfil</p>
-          </div>
-        </div>
-      </div>
+    <div className="h-full flex flex-col bg-gray-50 p-4">
+      <h1 className="text-2xl font-bold mb-2">Menú Principal</h1>
+      <p className="text-gray-600 mb-6">Selecciona una opción para comenzar</p>
       
-      {/* Menu Options */}
-      <div className="p-4 space-y-4">
-        <Card>
-          <CardHeader className="p-4 pb-2">
-            <CardTitle className="text-base">Preferencias</CardTitle>
-          </CardHeader>
-          <CardContent className="p-4 pt-2">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-gray-100 rounded-full">
-                    {darkMode ? (
-                      <Moon className="h-5 w-5 text-campus-blue" />
-                    ) : (
-                      <Sun className="h-5 w-5 text-campus-yellow" />
-                    )}
-                  </div>
-                  <div>
-                    <p className="font-medium text-sm">Modo oscuro</p>
-                    <p className="text-xs text-gray-500">Cambiar apariencia</p>
-                  </div>
-                </div>
-                <Switch 
-                  checked={darkMode} 
-                  onCheckedChange={setDarkMode} 
-                />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {menuItems.map((item, index) => (
+          <Link
+            key={index}
+            to={item.path}
+            className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200"
+          >
+            <div className="p-5 flex items-start gap-4">
+              <div className="rounded-full bg-gray-100 p-3">
+                {item.icon}
               </div>
-              
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-gray-100 rounded-full">
-                    <Bell className="h-5 w-5 text-campus-blue" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-sm">Notificaciones</p>
-                    <p className="text-xs text-gray-500">Administrar alertas</p>
-                  </div>
-                </div>
-                <Switch defaultChecked />
+              <div>
+                <h2 className="font-semibold">{item.title}</h2>
+                <p className="text-sm text-gray-500">{item.description}</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader className="p-4 pb-2">
-            <CardTitle className="text-base">Información</CardTitle>
-          </CardHeader>
-          <CardContent className="p-0">
-            <button 
-              className="w-full flex items-center gap-3 p-4 hover:bg-gray-50 transition-colors"
-              onClick={() => navigate('/about')}
-            >
-              <div className="p-2 bg-gray-100 rounded-full">
-                <Info className="h-5 w-5 text-campus-blue" />
-              </div>
-              <div className="text-left">
-                <p className="font-medium text-sm">Acerca de la Universidad</p>
-                <p className="text-xs text-gray-500">Historia y misión</p>
-              </div>
-            </button>
-            
-            <button 
-              className="w-full flex items-center gap-3 p-4 hover:bg-gray-50 transition-colors border-t"
-              onClick={() => navigate('/contact')}
-            >
-              <div className="p-2 bg-gray-100 rounded-full">
-                <MapPin className="h-5 w-5 text-campus-blue" />
-              </div>
-              <div className="text-left">
-                <p className="font-medium text-sm">Contacto</p>
-                <p className="text-xs text-gray-500">Dirección y teléfonos</p>
-              </div>
-            </button>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader className="p-4 pb-2">
-            <CardTitle className="text-base">Ayuda</CardTitle>
-          </CardHeader>
-          <CardContent className="p-0">
-            <button 
-              className="w-full flex items-center gap-3 p-4 hover:bg-gray-50 transition-colors"
-              onClick={() => navigate('/help')}
-            >
-              <div className="p-2 bg-gray-100 rounded-full">
-                <HelpCircle className="h-5 w-5 text-campus-blue" />
-              </div>
-              <div className="text-left">
-                <p className="font-medium text-sm">Centro de ayuda</p>
-                <p className="text-xs text-gray-500">Respuestas a preguntas frecuentes</p>
-              </div>
-            </button>
-            
-            <button 
-              className="w-full flex items-center gap-3 p-4 hover:bg-gray-50 transition-colors border-t"
-              onClick={() => navigate('/settings')}
-            >
-              <div className="p-2 bg-gray-100 rounded-full">
-                <Settings className="h-5 w-5 text-campus-blue" />
-              </div>
-              <div className="text-left">
-                <p className="font-medium text-sm">Configuración</p>
-                <p className="text-xs text-gray-500">Opciones avanzadas</p>
-              </div>
-            </button>
-          </CardContent>
-        </Card>
-        
-        <Button variant="outline" className="w-full flex items-center gap-2 mt-6" onClick={() => console.log("Cerrar sesión")}>
-          <LogOut className="h-4 w-4" />
-          Cerrar sesión
-        </Button>
-        
-        <div className="mt-6 text-center">
-          <p className="text-xs text-gray-500">Campus Explorer v1.0</p>
-          <p className="text-xs text-gray-400">© 2025 Universidad</p>
+          </Link>
+        ))}
+      </div>
+      
+      <div className="mt-auto pt-6">
+        <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="flex items-center gap-3">
+            <School className="w-8 h-8 text-campus-blue" />
+            <div>
+              <h2 className="font-bold">Universidad Mayor</h2>
+              <p className="text-xs text-gray-500">Explorando juntos el campus universitario</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
