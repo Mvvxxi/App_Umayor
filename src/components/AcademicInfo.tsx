@@ -133,7 +133,7 @@ const AcademicInfo: React.FC = () => {
                         <CardTitle>{career.name}</CardTitle>
                         <CardDescription className="mt-1">{career.faculty}</CardDescription>
                       </div>
-                      <Badge variant={career.accredited ? "success" : "outline"}>
+                      <Badge variant={career.accredited ? "default" : "outline"} className={career.accredited ? "bg-green-500 hover:bg-green-600" : ""}>
                         {career.accredited ? `Acreditada ${career.accreditationYears} años` : "No Acreditada"}
                       </Badge>
                     </div>
